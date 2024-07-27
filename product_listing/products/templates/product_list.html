@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product List</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+</head>
+<body>
+    <h1>Product List</h1>
+    <table id="productTable" class="display">
+        <thead>
+            <tr>
+                <th>Sl No</th>
+                <th>Product Name</th>
+                <th>Lowest Price</th>
+                <th>Variations & Stock</th>
+                <th>Last Updated</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        $(document).ready(function() {
+            $('#productTable').DataTable({
+                "ajax": "{% url 'product_list_data' %}",
+                "columns": [
+                    { "data": "id" },
+                    { "data": "name" },
+                    { "data": "lowest_price" },
+                    { "data": "variations" },
+                    { "data": "last_updated" }
+                ]
+            });
+        });
+    </script>
+</body>
+</html>
